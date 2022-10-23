@@ -2,8 +2,6 @@ package sample;
 
 import java.io.InputStream;
 import java.util.Scanner;
-import java.util.concurrent.Executor;
-import java.util.concurrent.RunnableFuture;
 
 public class RunCmd {
 
@@ -13,13 +11,13 @@ public class RunCmd {
     private String expectionResult = "";
     private boolean executing;
     private Integer exitValue;
-
-    private long timeOut = 3000L;
+    private long timeOut = 0L;
 
     public RunCmd(long timeOut, String... cmd) {
         this.timeOut = timeOut;
         this.cmd = cmd;
     }
+
     public RunCmd(String... cmd) {
         this.cmd = cmd;
     }
@@ -56,15 +54,17 @@ public class RunCmd {
     }
 
     private void watchDog(Process proc) {
-        new Thread(() -> {
-            try {
-                Thread.sleep(timeOut);
-                if (proc.isAlive())
-                    proc.destroy();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }).start();
+        if (timeOut > 0) {
+            new Thread(() -> {
+                try {
+                    Thread.sleep(timeOut);
+                    if (proc.isAlive())
+                        proc.destroy();
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }).start();
+        }
     }
 
     public void cleanResults() {
