@@ -2,6 +2,8 @@ package sample;
 
 import java.io.InputStream;
 import java.util.Scanner;
+import java.util.concurrent.Executor;
+import java.util.concurrent.RunnableFuture;
 
 public class RunCmd {
 
@@ -9,19 +11,26 @@ public class RunCmd {
     private String outResult = "";
     private String errorResult = "";
     private String expectionResult = "";
-
     private boolean executing;
+    private Integer exitValue;
 
+    private long timeOut = 3000L;
+
+    public RunCmd(long timeOut, String... cmd) {
+        this.timeOut = timeOut;
+        this.cmd = cmd;
+    }
     public RunCmd(String... cmd) {
         this.cmd = cmd;
     }
 
-    public RunCmd exec() {
+    public synchronized RunCmd exec() {
         try {
             cleanResults();
             executing = true;
 
-            Process proc = new ProcessBuilder(cmd).start();
+            final Process proc = new ProcessBuilder(cmd).start();
+            watchDog(proc);
 
             InputStream in = proc.getInputStream();
             Scanner sin = new Scanner(in);
@@ -34,6 +43,9 @@ public class RunCmd {
 
             outResult = outResult.trim();
             errorResult = errorResult.trim();
+            exitValue = proc.exitValue();
+
+            proc.destroy();
 
         } catch (Exception ex) {
             expectionResult += ex;
@@ -43,10 +55,23 @@ public class RunCmd {
         return this;
     }
 
+    private void watchDog(Process proc) {
+        new Thread(() -> {
+            try {
+                Thread.sleep(timeOut);
+                if (proc.isAlive())
+                    proc.destroy();
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }).start();
+    }
+
     public void cleanResults() {
         outResult = "";
         errorResult = "";
         expectionResult = "";
+        exitValue = null;
     }
 
     public String getOutResult() {
@@ -63,5 +88,9 @@ public class RunCmd {
 
     public boolean isExecuting() {
         return executing;
+    }
+
+    public Integer getExitValue() {
+        return exitValue;
     }
 }

@@ -1,12 +1,12 @@
 # sample java process
 
-Explorative coding to understand how java 
+Explorative coding to understand how java spawn processes
 
 ## goals
 
 - [X] spawn a process
 - [X] get results
-- [ ] never hang up
+- [X] never hang up
 - [ ] run on another thread
 - [ ] get PID
 - 
