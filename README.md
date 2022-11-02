@@ -1,6 +1,6 @@
 # sample java process
 
-Explorative coding to understand how java spawn processes
+Simple java library to spawn system processes
 
 ## goals
 
