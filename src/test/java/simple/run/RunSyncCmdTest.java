@@ -1,4 +1,4 @@
-package sample;
+package simple.run;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

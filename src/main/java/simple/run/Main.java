@@ -1,4 +1,4 @@
-package sample;
+package simple.run;
 
 public class Main {
 

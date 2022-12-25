@@ -1,4 +1,4 @@
-package sample;
+package simple.run;
 
 import java.io.InputStream;
 import java.io.PrintWriter;
