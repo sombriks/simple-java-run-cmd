@@ -1,34 +1,35 @@
 package sample;
 
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 
-public class RunCmd {
+public class SyncRunCmd {
 
     private String[] cmd;
     private String outResult = "";
     private String errorResult = "";
     private String expectionResult = "";
     private boolean executing;
-    private Integer exitValue;
+    private int exitValue = 0;
     private long timeOut = 0L;
 
-    public RunCmd(long timeOut, String... cmd) {
+    public SyncRunCmd(long timeOut, String... cmd) {
         this.timeOut = timeOut;
         this.cmd = cmd;
     }
 
-    public RunCmd(String... cmd) {
+    public SyncRunCmd(String... cmd) {
         this.cmd = cmd;
     }
 
-    public synchronized RunCmd exec() {
+    public synchronized SyncRunCmd exec(String ...interactions) {
         try {
             cleanResults();
             executing = true;
 
             final Process proc = new ProcessBuilder(cmd).start();
-            watchDog(proc);
 
             InputStream in = proc.getInputStream();
             Scanner sin = new Scanner(in);
@@ -36,17 +37,30 @@ public class RunCmd {
             InputStream err = proc.getErrorStream();
             Scanner serr = new Scanner(err);
 
-            while (sin.hasNext()) outResult += " " + sin.nextLine();
-            while (serr.hasNext()) errorResult += " " + serr.nextLine();
+            PrintWriter input = new PrintWriter(proc.getOutputStream());
 
-            outResult = outResult.trim();
-            errorResult = errorResult.trim();
+            // wait for interactive input to be ready
+            proc.waitFor(1L, TimeUnit.SECONDS);
+            watchDog(proc);
+            for(String interaction : interactions) {
+                input.println(interaction);
+                input.flush();
+            }
+
+            while (sin.hasNext()) {
+                outResult += sin.nextLine() + System.lineSeparator();
+            }
+            while (serr.hasNext()) {
+                errorResult += serr.nextLine() + System.lineSeparator();
+            }
+
             exitValue = proc.exitValue();
 
             proc.destroy();
 
         } catch (Exception ex) {
             expectionResult += ex;
+            exitValue = -1;
         } finally {
             executing = false;
         }
@@ -71,7 +85,7 @@ public class RunCmd {
         outResult = "";
         errorResult = "";
         expectionResult = "";
-        exitValue = null;
+        exitValue = 0;
     }
 
     public String getOutResult() {
@@ -90,7 +104,7 @@ public class RunCmd {
         return executing;
     }
 
-    public Integer getExitValue() {
+    public int getExitValue() {
         return exitValue;
     }
 }
