@@ -29,4 +29,4 @@ public class Example {
 ## Caveats
 
 - This library intentionally treats inputs and outputs as text. 
-  Do not pipe binary data to it it will break.
+  Do not pipe binary data to it, or it will break.
