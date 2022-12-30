@@ -1,4 +1,4 @@
-package simple.run;
+package io.github.sombriks.simpleruncmd;
 
 import java.io.InputStream;
 import java.io.PrintWriter;
