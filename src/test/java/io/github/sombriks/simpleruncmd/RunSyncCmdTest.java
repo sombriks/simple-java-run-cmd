@@ -1,4 +1,4 @@
-package simple.run;
+package io.github.sombriks.simpleruncmd;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

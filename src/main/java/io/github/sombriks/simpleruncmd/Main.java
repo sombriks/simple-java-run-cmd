@@ -1,4 +1,4 @@
-package simple.run;
+package io.github.sombriks.simpleruncmd;
 
 public class Main {
 

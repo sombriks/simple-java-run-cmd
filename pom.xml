@@ -4,7 +4,31 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>simple.run</groupId>
+    <name>Simple java run cmd</name>
+    <description>run command line programs from your java code</description>
+    <url>https://github.com/sombriks/simple-java-run-cmd</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://github.com/sombriks/simple-java-run-cmd/blob/main/LICENSE</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/sombriks/simple-java-run-cmd.git</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Leonardo Silveira</name>
+            <email>sombriks@gmail.com</email>
+            <organization>sombriks</organization>
+            <organizationUrl>https://sombriks.com.br</organizationUrl>
+        </developer>
+    </developers>
+
+    <groupId>io.github.sombriks</groupId>
     <artifactId>simple-run-cmd</artifactId>
     <version>0.1.0</version>
 
