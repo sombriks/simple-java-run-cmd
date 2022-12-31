@@ -14,7 +14,8 @@ The tl;dr version about the process of publishing this package on maven central:
   and then [go see your packaging in stage phase](https://s01.oss.sonatype.org/#stagingRepositories)
   - 'close' the staging repository and see if it passes validations
   - 'promote' your repo and see it going live
-- Wait for proper publishing and then use your package on other projects.
+- Wait for proper publishing and then use your package
+  [on other projects](https://github.com/sombriks/example-list-files).
 
 ## Notes on pom structure
 
