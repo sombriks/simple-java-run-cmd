@@ -1,5 +1,9 @@
 # Simple Java Run Cmd
 
+![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/sombriks/simple-java-run-cmd/maven.yml?branch=main&label=maven%20build)
+[![Available on maven central](https://img.shields.io/maven-central/v/io.github.sombriks/simple-run-cmd)](https://central.sonatype.dev/artifact/io.github.sombriks/simple-run-cmd/0.1.0)
+![license](https://img.shields.io/github/license/sombriks/simple-java-run-cmd)
+
 Simple java library to spawn system processes. Expect to run command line tools
 and get some degree of control over input and output.
 
