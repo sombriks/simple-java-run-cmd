@@ -10,7 +10,7 @@ The tl;dr version about the process of publishing this package on maven central:
 - Open a _new project ticket_ as described on
   https://central.sonatype.org/publish/publish-guide/#a-complete-example-pom
   - example: https://issues.sonatype.org/browse/OSSRH-87452 
-- Run `mvn verify deploy -s settings.xml -Dusername=your-sonatype-username -Dpassword=your-sonatype-password`
+- Run `mvn verify deploy -s settings.xml -Dusername=your-sonatype-username -Dpassword=your-sonatype-password -Dgpg.passphrse=your-gpg-password`
   and then [go see your packaging in stage phase](https://s01.oss.sonatype.org/#stagingRepositories)
   - 'close' the staging repository and see if it passes validations
   - 'promote' your repo and see it going live

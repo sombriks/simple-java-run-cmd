@@ -8,29 +8,9 @@
     <description>run command line programs from your java code</description>
     <url>https://github.com/sombriks/simple-java-run-cmd</url>
 
-    <licenses>
-        <license>
-            <name>MIT License</name>
-            <url>https://github.com/sombriks/simple-java-run-cmd/blob/main/LICENSE</url>
-        </license>
-    </licenses>
-
-    <scm>
-        <url>https://github.com/sombriks/simple-java-run-cmd.git</url>
-    </scm>
-
-    <developers>
-        <developer>
-            <name>Leonardo Silveira</name>
-            <email>sombriks@gmail.com</email>
-            <organization>sombriks</organization>
-            <organizationUrl>https://sombriks.com.br</organizationUrl>
-        </developer>
-    </developers>
-
     <groupId>io.github.sombriks</groupId>
     <artifactId>simple-run-cmd</artifactId>
-    <version>0.1.0</version>
+    <version>0.1.1</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -96,6 +76,26 @@
             </plugin>
         </plugins>
     </build>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>https://github.com/sombriks/simple-java-run-cmd/blob/main/LICENSE</url>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/sombriks/simple-java-run-cmd.git</url>
+    </scm>
+
+    <developers>
+        <developer>
+            <name>Leonardo Silveira</name>
+            <email>sombriks@gmail.com</email>
+            <organization>sombriks</organization>
+            <organizationUrl>https://sombriks.com.br</organizationUrl>
+        </developer>
+    </developers>
 
     <distributionManagement>
         <repository>
